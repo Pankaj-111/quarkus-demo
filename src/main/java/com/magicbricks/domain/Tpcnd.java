@@ -16,7 +16,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "TPCND", schema = "PROPERTY")
+@Table
+//(name = "TPCND", schema = "PROPERTY")
 public class Tpcnd extends PanacheEntityBase {
 
 	@Id

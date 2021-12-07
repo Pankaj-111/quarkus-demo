@@ -7,18 +7,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import com.magicbricks.repository.TpcndRepo;
+import com.magicbricks.service.PhotoComponentService;
 import com.magicbricks.utils.CurrentDevice;
 
 import io.vertx.core.http.HttpServerRequest;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Path("/property")
 public class PhotoComponentResource {
 	@Context
 	private HttpServerRequest request;
 
 	@Inject
-	private TpcndRepo repo;
+	private PhotoComponentService service;
 
 	@Inject
 	private CurrentDevice device;
@@ -27,8 +29,7 @@ public class PhotoComponentResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String photoComponent() {
-		System.out.println("HHHHHHHHHHH is mobile :" + device.isMobile(request));
-		System.out.println("10 th city  :" + repo.getByGroup("City").get(10).getCnddesc());
-		return "Photo Component";
+		log.info("Is mobile :{}" , device.isMobile(request));
+		return service.getPotoComponent();
 	}
 }
